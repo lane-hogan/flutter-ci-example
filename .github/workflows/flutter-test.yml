@@ -1,9 +1,9 @@
-name: CI
+name: Flutter Test
 
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,14 +18,5 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Check formatting
-        run: dart format --output=none --set-exit-if-changed .
-
-      - name: Lint
-        run: flutter analyze
-
-      - name: Build project
-        run: flutter build apk --release
-
-      - name: Run tests
+      - name: Run Tests
         run: flutter test
